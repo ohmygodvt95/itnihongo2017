@@ -17,12 +17,6 @@
             </div>
 
             <div class="field">
-              <%= f.label "生年月日" %><br />
-              <%= f.date_field :birthday, autofocus: true, class: "form-control",
-                               required: true %>
-            </div>
-
-            <div class="field">
               <%= f.label "Eメール" %><br />
               <%= f.email_field :email, autofocus: true, class: "form-control",
                                 required: true %>
@@ -31,7 +25,7 @@
             <div class="field">
               <%= f.label "パスワード" %>
               <% if @minimum_password_length %>
-                <em>(<%= @minimum_password_length %> <%= t "devise.edit.char_minimum" %>)</em>
+                <em>(<%= @minimum_password_length %> char minimum)</em>
               <% end %><br />
               <%= f.password_field :password, autocomplete: "off", class: "form-control",
                                    required: true%>
