@@ -1,3 +1,31 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.navbar-default{
+  margin: 0;
+}
+body > .wrapper{
+  margin-top: 50px;
+  min-height: 100vh;
+  background-image: url("/assets/bg.jpg");
+  background-size: cover;
+  .text-white{
+    color: #fff;
+  }
+
+  h1{
+    font-family: 'Baloo';
+    margin-top: 150px;
+    font-size: 80px;
+    text-shadow: 0 0 5px #000;
+  }
+  p{
+    text-shadow: 0 0 8px #fff;
+    font-size: 30px;
+    color: #000;
+  }
+
+  hr{
+    background-color: lightslategray;
+  }
+}

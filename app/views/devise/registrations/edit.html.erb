@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <br>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          Panel body ...
+          <h2 class="text-center"><%= t "header.edit_account" %></h2>
+          <hr>
+
+          <%= form_for resource, as: resource_name,
+                       url: registration_path(resource_name),
+                       html: {method: :put} do |f| %>
+            <%= devise_error_messages! %>
+
+            <div class="field">
+              <%= f.label "Eメール" %><br />
+              <%= f.email_field :email, autofocus: true, class: "form-control" %>
+            </div>
+
+            <div class="field">
+              <%= f.label "ユーザー名" %><br />
+              <%= f.text_field :username, autofocus: true, class: "form-control" %>
+            </div>
+
+            <div class="field">
+              <%= f.label "生年月日" %><br />
+              <%= f.date_field :birthday, autofocus: true, class: "form-control" %>
+            </div>
+
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div><%= resource.unconfirmed_email %></div>
+            <% end %>
+
+            <div class="field">
+              <%= f.label "パスワード" %><br />
+              <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+              <% if @minimum_password_length %>
+                <br />
+                <em><%= @minimum_password_length %></em>
+              <% end %>
+            </div>
+
+            <div class="field">
+              <%= f.label "Re-パスワード" %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+            </div>
+
+            <div class="field">
+              <%= f.label "現在のパスワード" %> <i></i><br />
+              <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
+            </div>
+
+            <div class="actions">
+              <hr>
+              <%= f.submit "アップデイト", class: "btn btn-success btn-block" %>
+            </div>
+          <% end %>
+
+          <h3>アカウントをキャンセルする</h3>
+
+          <p>不幸
+            <%= button_to "不幸",
+                          registration_path(resource_name),
+                          data: {confirm: "本気ですか？"},
+                          method: :delete,
+                          class: "btn btn-danger btn-block" %></p>
+
+          <%= link_to "バック", :back %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
