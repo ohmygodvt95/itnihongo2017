@@ -3,13 +3,16 @@
   <head>
     <title>Wevivu</title>
     <%= csrf_meta_tags %>
-
+    <link href="https://fonts.googleapis.com/css?family=Baloo" rel="stylesheet">
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
-    <%= javascript_include_tag "application"%>
   </head>
 
   <body>
     <%= render "layouts/header" %>
-    <%= yield %>
+    <div class="wrapper">
+      <%= yield %>
+    </div>
+    <%= render "layouts/footer" %>
+    <%= javascript_include_tag "application"%>
   </body>
 </html>
