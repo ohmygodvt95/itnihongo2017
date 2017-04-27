@@ -1,0 +1,17 @@
+<div class="container wevivu">
+  <div class="row">
+    <div class="col-sm-12 text-white">
+      <h1 class="text-center">WEVIVU</h1>
+      <p class="text-center">ベトナムの有名な観光名所</p>
+      <hr>
+      <% if user_signed_in? %>
+      <% else %>
+        <div class="col-sm-2 col-sm-offset-5">
+          <%= link_to "サインイン", new_user_session_path, class: "btn btn-primary btn-lg btn-block" %>
+          <hr>
+          <%= link_to "サインアップ", new_user_registration_path, class: "btn btn-success btn-lg btn-block" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
