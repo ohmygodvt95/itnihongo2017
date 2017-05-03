@@ -1,0 +1,22 @@
+<div class="col-sm-3 static" id="static">
+  <div id="sidebar">
+    <div class="profile-card">
+      <img src="<%= current_user.avatar.thumb.url %>" alt="user" class="profile-photo"/>
+      <h5>
+        <%= link_to current_user.username, current_user, class: "text-white" %>
+      </h5>
+      <a href="#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 followers</a>
+    </div><!--profile card ends-->
+    <ul class="nav-news-feed">
+      <li><i class="fa fa-newspaper-o"></i>
+        <div><a href="<%= root_path %>">ホームページ</a></div>
+      </li>
+      <li><i class="fa fa fa-picture-o"></i>
+        <div><%= link_to "私のニュースフィード", current_user %></div>
+      </li>
+      <li><i class="fa fa-users"></i>
+        <div><a href="newsfeed-friends.html">友達</a></div>
+      </li>
+    </ul>
+  </div>
+</div>

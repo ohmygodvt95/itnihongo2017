@@ -1,0 +1,43 @@
+<br>
+<div class="container">
+  <div class="row">
+    <%= render "home/left" %>
+    <div class="col-sm-7">
+      <%= render "home/create" %>
+      <div class="media">
+        <div class="row js-masonry" data-masonry='{ "itemSelector": ".grid-item", "percentPosition": true }'>
+          <% @images.each do |image| %>
+            <div class="grid-item col-md-6 col-sm-6">
+              <div class="media-grid">
+                <%= link_to image do %>
+                  <div class="img-wrapper">
+                      <img src="<%= image.file.thumb.url %>" alt=""
+                           class="img-responsive post-image"/>
+                  </div>
+                <% end %>
+                <div class="media-info">
+                  <div class="reaction">
+                    <a class="btn text-green"><i class="fa fa-thumbs-up"></i> 100</a>
+                    <span class="pull-right" style="padding-top: 5px"><%= time_ago_in_words(image.created_at) %> ago</span>
+                  </div>
+                  <div class="user-info">
+                    <img src="<%= image.user.avatar.thumb.url %>" alt=""
+                         class="profile-photo-sm pull-left"/>
+                    <div class="user">
+                      <h6>
+                        <%= link_to image.user.username, image.user, class: "profile-link" %>
+                      </h6>
+                      <a class="text-green" href="#">Friend</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <hr>
+      <%= paginate @images,theme: 'twitter-bootstrap-3' %>
+    </div>
+  </div>
+</div>

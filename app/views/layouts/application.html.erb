@@ -9,12 +9,14 @@
 
   <body>
     <%= render "layouts/header" %>
-    <div class="wrapper">
+
+    <div class="wrapper <% if user_signed_in? %> no-bg <% end %>">
       <%= yield %>
     </div>
     <br>
     <br>
     <%= render "layouts/footer" %>
     <%= javascript_include_tag "application"%>
+    <%= render "layouts/message" %>
   </body>
 </html>

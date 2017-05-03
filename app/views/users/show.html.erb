@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="timeline">
+    <div class="timeline-cover"
+         style="background-image: url(<%= @user.cover.thumb.url %>);
+      background-attachment: fixed; background-size: cover; background-position: center center">
+      <%= render "users/header" %>
+      <div id="page-contents">
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-7">
+            <% if user_signed_in? %>
+              <%= render "home/create" if current_user.id == @user.id %>
+            <% end %>
+            <% @images.each do |image|  %>
+              <!-- Post Content
+              ================================================= -->
+              <div class="post-content">
+
+                <!--Post Date-->
+                <div class="post-date hidden-xs hidden-sm">
+                  <h5><%= image.user.username %></h5>
+                  <p class="text-grey"><%= time_ago_in_words(image.created_at) %> ago</p>
+                </div><!--Post Date End-->
+                <%= link_to image do %>
+                  <img src="<%= image.file %>" alt="post-image" class="img-responsive post-image" />
+                <% end %>
+                <div class="post-container">
+                  <img src="<%= @user.avatar.thumb.url %>" alt="user" class="profile-photo-md pull-left" />
+                  <div class="post-detail">
+                    <div class="user-info">
+                      <h5><%= link_to image.user.username, image.user, class: "profile-link" %></h5>
+                      <p class="text-muted"><%= time_ago_in_words(image.created_at) %> ago 写真を公開しました</p>
+                    </div>
+                    <div class="reaction">
+                      <a class="btn text-green"><i class="fa fa-thumbs-up"></i> 13</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <hr>
+            <%= paginate @images,theme: 'twitter-bootstrap-3' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

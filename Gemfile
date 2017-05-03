@@ -12,6 +12,10 @@ gem "jbuilder", "~> 2.5"
 gem "devise"
 gem "carrierwave", "~> 1.0"
 gem "kaminari"
+gem "ransack"
+gem "mini_magick", "3.8.0"
+gem "toastr-rails"
+gem "bootstrap-kaminari-views"
 
 group :development, :test do
   gem "byebug", platform: :mri
