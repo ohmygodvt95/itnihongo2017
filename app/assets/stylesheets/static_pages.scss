@@ -1,14 +1,29 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "toastr";
+
+*{
+  transition: all .25s;
+}
 .navbar-default{
   margin: 0;
+  box-shadow:  0 0 5px rgba(0, 0, 0, 0.5);
+}
+.no-bg{
+  background-image: none!important;
 }
 body > .wrapper{
-  margin-top: 50px;
+  padding-top: 50px;
   min-height: 100vh;
   background-image: url("/assets/bg.jpg");
   background-size: cover;
+
+  .js-masonry .col-sm-6{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
   .text-white{
     color: #fff;
   }

@@ -26,7 +26,21 @@
               <%= f.label "生年月日" %><br />
               <%= f.date_field :birthday, autofocus: true, class: "form-control" %>
             </div>
-
+            <hr>
+            <div class="field">
+              <%= f.label "アバター" %><br />
+              <%= f.file_field :avatar, autofocus: true %>
+              <br>
+              <img src="<%= current_user.avatar.thumb.url %>" alt="" class="img-responsive center-block">
+            </div>
+            <hr>
+            <div class="field">
+              <%= f.label "カバー" %><br />
+              <%= f.file_field :cover, autofocus: true %>
+              <br>
+              <img src="<%= current_user.cover.thumb.url %>" alt="" class="img-responsive center-block">
+            </div>
+            <hr>
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
               <div><%= resource.unconfirmed_email %></div>
             <% end %>

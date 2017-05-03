@@ -1,0 +1,43 @@
+<br>
+<div class="container">
+  <div class="row">
+    <%= render "home/left" %>
+    <div class="col-sm-7">
+      <!-- Post Content
+            ================================================= -->
+      <div class="post-content">
+        <img src="<%= @image.file.url %>" alt="post-image" class="img-responsive post-image" />
+        <div class="post-container">
+          <img src="<%= @image.user.avatar.thumb.url %>" alt="user" class="profile-photo-md pull-left" />
+          <div class="post-detail">
+            <div class="user-info">
+              <h5>
+                <%= link_to @image.user.username, @image.user, class: "profile-link" %> <span class="following">following</span></h5>
+              <p class="text-muted"><%= time_ago_in_words(@image.created_at) %> ago 写真を公開しました</p>
+            </div>
+            <div class="reaction">
+              <a class="btn text-green"><i class="fa fa-thumbs-up"></i> 13</a>
+            </div>
+            <div class="line-divider"></div>
+            <div class="post-text">
+              <p><%= @image.body %></p>
+            </div>
+            <div class="line-divider"></div>
+            <div class="post-comment">
+              <img src="http://thunder-team.com/friend-finder/images/users/user-1.jpg" alt="" class="profile-photo-sm" />
+              <p><a href="timeline.html" class="profile-link">Diana </a><i class="em em-laughing"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
+            </div>
+            <div class="post-comment">
+              <img src="http://thunder-team.com/friend-finder/images/users/user-1.jpg" alt="" class="profile-photo-sm" />
+              <p><a href="timeline.html" class="profile-link">John</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
+            </div>
+            <div class="post-comment">
+              <img src="http://thunder-team.com/friend-finder/images/users/user-1.jpg" alt="" class="profile-photo-sm" />
+              <input type="text" class="form-control" placeholder="コメントを投稿">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
