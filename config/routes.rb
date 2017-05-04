@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :relationships, only: [:create, :destroy]
+  resources :newsfeed, only: :index
   unauthenticated  do
     root "static_pages#show", act: "home"
   end
