@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
 
+  get 'followers/index'
+
+  get 'following/index'
+
   devise_for :users
   resources :images
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    resources :followers, only: [:index]
+    resources :following, only: [:index]
+  end
 
+  resources :relationships, only: [:create, :destroy]
   unauthenticated  do
     root "static_pages#show", act: "home"
   end
