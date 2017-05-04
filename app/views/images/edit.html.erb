@@ -1,0 +1,26 @@
+<br>
+<div class="container">
+  <div class="row">
+    <%= render "home/left" %>
+    <div class="col-sm-7">
+      <h3 class="text-center">画像を編集する</h3>
+      <hr>
+      <%= form_for @image, html: { multipart: true } do |f| %>
+        <div class="col-sm-9">
+          <div class="form-group">
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.text_area :body, placeholder: "あなたが望むものを書く", class: "form-control", cols:"60", rows:"1", required: true, value: @image.body %>
+          </div>
+            <%= f.file_field :file, placeholder: "Image" %>
+            <br>
+          <img src="<%= @image.file.url %>" alt="" class="img-responsive center-block" style="border: 2px solid gray; border-radius: 5px;">
+        </div>
+        <div class="col-sm-3">
+          <button class="btn btn-primary btn-sm btn-block" type="submit">アップデイト</button>
+          <hr>
+          <%= link_to "キャンセル", @image, class: "btn btn-danger btn-block" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

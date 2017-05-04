@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def find_user
     @user = User.find_by id: params[:id]
     unless @user
-      flash[:error] = "User does not exist"
+      flash[:error] = "ユーザーは存在しません"
       redirect_to root_path
     end
   end

@@ -5,6 +5,20 @@
     <div class="col-sm-7">
       <!-- Post Content
             ================================================= -->
+      <% if user_signed_in? %>
+        <% if current_user.id == @image.user.id  %>
+          <h3>
+            <%= link_to edit_image_path(@image), class: "pull-right", "data-toggle": "tooltip",
+                title: "画像を編集する", "data-placement": "bottom" do %>
+              <i class="fa fa-cog fa-fw"></i>
+            <% end %>
+            <%= link_to image_path(@image), method: :delete, class: "pull-right",title: "画像を削除する",
+                        "data-toggle": "tooltip", "data-placement": "bottom" ,data: {confirm: "確信してるの？"} do %>
+              <i class="fa fa-trash fa-fw text-danger"></i>
+            <% end %>
+          </h3>
+        <% end %>
+      <% end %>
       <div class="post-content">
         <img src="<%= @image.file.url %>" alt="post-image" class="img-responsive post-image" />
         <div class="post-container">
@@ -31,10 +45,12 @@
               <img src="http://thunder-team.com/friend-finder/images/users/user-1.jpg" alt="" class="profile-photo-sm" />
               <p><a href="timeline.html" class="profile-link">John</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
             </div>
-            <div class="post-comment">
-              <img src="http://thunder-team.com/friend-finder/images/users/user-1.jpg" alt="" class="profile-photo-sm" />
-              <input type="text" class="form-control" placeholder="コメントを投稿">
-            </div>
+            <% if user_signed_in? %>
+              <div class="post-comment">
+                <img src="<%= current_user.avatar.thumb.url %>" alt="" class="profile-photo-sm" />
+                <input type="text" class="form-control" placeholder="コメントを投稿">
+              </div>
+            <% end %>
           </div>
         </div>
       </div>

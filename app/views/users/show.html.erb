@@ -1,15 +1,21 @@
 <div class="container">
   <div class="timeline">
     <div class="timeline-cover"
-         style="background-image: url(<%= @user.cover.thumb.url %>);
-      background-attachment: fixed; background-size: cover; background-position: center center">
+         style="background-image: url(<%= @user.cover.thumb.url %>); background-size: cover;">
       <%= render "users/header" %>
       <div id="page-contents">
         <div class="row">
           <div class="col-md-3"></div>
           <div class="col-md-7">
             <% if user_signed_in? %>
-              <%= render "home/create" if current_user.id == @user.id %>
+              <% if current_user.id == @user.id %>
+                <%= render "home/create"  %>
+              <% else %>
+                <hr>
+                <a href="#" class="btn btn-primary btn-block">Follow</a>
+                <hr>
+              <% end %>
+
             <% end %>
             <% @images.each do |image|  %>
               <!-- Post Content
