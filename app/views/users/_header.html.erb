@@ -12,10 +12,16 @@
       <ul class="list-inline profile-menu">
         <li><%= link_to "タイムライン", @user, class: "active" %></li>
         <li><a href="timeline-about.html">私について</a></li>
-        <li><a href="timeline-friends.html">フォロー</a></li>
-      </ul>
-      <ul class="follow-me list-inline">
-        <li>1,299 フォローしている人</li>
+        <li>
+          <%= link_to user_followers_path(@user) do %>
+            <%= @user.followers.count %> Followers
+          <% end %>
+        </li>
+        <li>
+          <%= link_to user_following_index_path(@user) do %>
+            <%= @user.following.count %> Following
+          <% end %>
+        </li>
       </ul>
     </div>
   </div>
@@ -32,7 +38,7 @@
     <ul class="list-inline">
       <li><a href="timline.html" class="active">タイムライン</a></li>
       <li><a href="timeline-about.html">私について</a></li>
-      <li><a href="timeline-friends.html">フォロー</a></li>
+      <li><a href="timeline-friends.html"><%= current_user.following.count %> フォローしている人</a></li>
     </ul>
   </div>
 </div><!--Timeline Menu for Small Screens End-->

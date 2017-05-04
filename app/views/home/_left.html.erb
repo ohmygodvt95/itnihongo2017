@@ -6,7 +6,13 @@
       <h5>
         <%= link_to current_user.username, current_user, class: "text-white" %>
       </h5>
-      <a href="#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 followers</a>
+      <%= link_to user_followers_path(current_user), class: "text-white" do %>
+        <b><%= current_user.followers.count %> </b>  followers
+      <% end %>
+      <br>
+      <%= link_to user_following_index_path(current_user), class: "text-white" do %>
+        <b><%= current_user.following.count %></b>  following
+      <% end %>
     </div><!--profile card ends-->
     <ul class="nav-news-feed">
       <li><i class="fa fa-newspaper-o"></i>
