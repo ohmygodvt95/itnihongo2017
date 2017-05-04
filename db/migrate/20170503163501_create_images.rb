@@ -3,7 +3,7 @@ class CreateImages < ActiveRecord::Migration[5.0]
     create_table :images do |t|
       t.integer :user_id
       t.text :body, null: true
-      t.string :image
+      t.string :file
       t.timestamps
     end
   end
