@@ -16,13 +16,16 @@
     </div><!--profile card ends-->
     <ul class="nav-news-feed">
       <li><i class="fa fa-newspaper-o"></i>
-        <div><a href="<%= root_path %>">ホームページ</a></div>
+        <div><a href="<%= root_path %>">ホーム</a></div>
       </li>
       <li><i class="fa fa fa-picture-o"></i>
-        <div><%= link_to "私のニュースフィード", current_user %></div>
+        <div><%= link_to "ニュースフィード", newsfeed_index_path %></div>
       </li>
-      <li><i class="fa fa-users"></i>
-        <div><a href="newsfeed-friends.html">友達</a></div>
+      <li><i class="fa fa fa-clock-o"></i>
+        <div><%= link_to "タイムライン", current_user %></div>
+      </li>
+      <li><i class="fa fa fa-users"></i>
+        <div><%= link_to "Followers", user_followers_path(current_user)%></div>
       </li>
     </ul>
   </div>

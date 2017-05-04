@@ -26,4 +26,11 @@ class User < ApplicationRecord
   def following? other_user
     following.include? other_user
   end
+
+  def newsfeed page = 1
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id"
+    Image.where("user_id IN (#{following_ids})
+                     OR user_id = :user_id", user_id: id).order(id: :desc)
+  end
 end
