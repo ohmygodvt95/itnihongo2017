@@ -1,0 +1,32 @@
+<div class="col-sm-3 static" id="static">
+  <div id="sidebar">
+    <br>
+    <div class="profile-card">
+      <img src="<%= current_user.avatar.thumb.url %>" alt="user" class="profile-photo"/>
+      <h5>
+        <%= link_to current_user.username, current_user, class: "text-white" %>
+      </h5>
+      <%= link_to user_followers_path(current_user), class: "text-white" do %>
+        <b><%= current_user.followers.count %> </b>  followers
+      <% end %>
+      <br>
+      <%= link_to user_following_index_path(current_user), class: "text-white" do %>
+        <b><%= current_user.following.count %></b>  following
+      <% end %>
+    </div><!--profile card ends-->
+    <ul class="nav-news-feed">
+      <li><i class="fa fa-newspaper-o"></i>
+        <div><a href="<%= root_path %>">ホーム</a></div>
+      </li>
+      <li><i class="fa fa fa-picture-o"></i>
+        <div><%= link_to "ニュースフィード", newsfeed_index_path %></div>
+      </li>
+      <li><i class="fa fa fa-clock-o"></i>
+        <div><%= link_to "タイムライン", current_user %></div>
+      </li>
+      <li><i class="fa fa fa-users"></i>
+        <div><%= link_to "Followers", user_followers_path(current_user)%></div>
+      </li>
+    </ul>
+  </div>
+</div>

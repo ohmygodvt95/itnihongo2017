@@ -1,0 +1,30 @@
+<div class="create-post">
+  <div class="row">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">投稿を作成</h3>
+      </div>
+      <div class="panel-body">
+        <%= form_for :image, url: images_path, html: { multipart: true }  do |f| %>
+          <div class="col-sm-9">
+            <div class="form-group">
+              <img src="<%= current_user.avatar.thumb.url %>" alt="" class="profile-photo-md"/>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <%= f.text_area :body, placeholder: "今何している？", class: "form-control", cols:"60", rows:"1", required: true %>
+
+            </div>
+            <hr>
+            <div class="col-sm-10 col-sm-offset-1">
+              <%= f.file_field :file, placeholder: "Image", required: true %>
+            </div>
+
+          </div>
+          <div class="col-sm-3">
+            <button class="btn btn-primary pull-right btn-sm" type="submit">投稿する</button>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="timeline">
+    <div class="timeline-cover"
+         style="background-image: url(<%= @user.cover.thumb.url %>); background-size: cover;">
+      <%= render "users/header" %>
+      <div id="page-contents">
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-7">
+            <h2 class="text-center">Following list
+            </h2>
+            <hr>
+            <div class="friend-list">
+              <div class="row">
+                <% @users.each do |user| %>
+                  <div class="col-md-6 col-sm-6">
+                    <div class="friend-card">
+                      <img src="<%= user.cover.thumb.url %>" alt="profile-cover" class="img-responsive cover" />
+                      <div class="card-info">
+                        <img src="<%= user.avatar.thumb.url %>" alt="user" class="profile-photo-lg" />
+                        <div class="friend-info">
+                          <h5>
+                            <%= link_to user.username, user, class: "profile-link" %>
+                          </h5>
+                          <p><%= user.followers.count %> people followers</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <hr>
+            <%= paginate @users,theme: 'twitter-bootstrap-3' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="timeline">
+    <div class="timeline-cover"
+         style="background-image: url(<%= @user.cover.thumb.url %>); background-size: cover;">
+      <%= render "users/header" %>
+      <div id="page-contents">
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-7">
+            <% if user_signed_in? %>
+              <% if current_user.id == @user.id %>
+                <%= render "home/create"  %>
+              <% else %>
+                <hr>
+                <% if current_user.id != @user.id %>
+                  <div id="follow_form">
+                    <% unless current_user.following? @user %>
+                      <%= form_for current_user.active_relationships.build do |f| %>
+                        <div><%= hidden_field_tag :followed_id, @user.id %></div>
+                        <%= f.submit "フォロー", class: "btn btn-primary btn-block" %>
+                      <% end %>
+                    <% else %>
+                      <%= form_for current_user.active_relationships.find_by(followed_id: @user.id),
+                                   html: { method: :delete } do |f| %>
+                        <%= f.submit "アンフォロー", class: "btn btn-danger btn-block" %>
+                      <% end %>
+
+                  <% end %>
+                  </div>
+                <% end %>
+                <hr>
+              <% end %>
+
+            <% end %>
+            <% @images.each do |image|  %>
+              <!-- Post Content
+              ================================================= -->
+              <div class="post-content">
+
+                <!--Post Date-->
+                <div class="post-date hidden-xs hidden-sm">
+                  <h5><%= image.user.username %></h5>
+                  <p class="text-grey"><%= time_ago_in_words(image.created_at) %> ago</p>
+                </div><!--Post Date End-->
+                <%= link_to image do %>
+                  <img src="<%= image.file %>" alt="post-image" class="img-responsive post-image" />
+                <% end %>
+                <div class="post-container">
+                  <img src="<%= @user.avatar.thumb.url %>" alt="user" class="profile-photo-md pull-left" />
+                  <div class="post-detail">
+                    <div class="user-info">
+                      <h5><%= link_to image.user.username, image.user, class: "profile-link" %></h5>
+                      <p class="text-muted"><%= time_ago_in_words(image.created_at) %> ago 写真を公開しました</p>
+                    </div>
+                    <div class="reaction">
+                      <a class="btn text-green"><i class="fa fa-thumbs-up"></i> 13</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <hr>
+            <%= paginate @images,theme: 'twitter-bootstrap-3' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
