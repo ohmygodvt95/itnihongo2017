@@ -16,6 +16,7 @@ gem "ransack"
 gem "mini_magick", "3.8.0"
 gem "toastr-rails"
 gem "bootstrap-kaminari-views"
+gem "ransack"
 
 group :development, :test do
   gem "byebug", platform: :mri
