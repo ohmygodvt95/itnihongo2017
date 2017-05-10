@@ -19,16 +19,6 @@
 //= require_tree .
 //= require_self
 
-var preloader = $('#spinner-wrapper');
-$(window).on('load', function() {
-  var preloaderFadeOutTime = 2000;
-
-  function hidePreloader() {
-    preloader.fadeOut(preloaderFadeOutTime);
-  }
-  hidePreloader();
-});
-
 jQuery(document).ready(function($) {
   $("#sidebar").stick_in_parent({parent: '.wrapper',  offset_top: 80});
   $('[data-toggle="tooltip"]').tooltip();
