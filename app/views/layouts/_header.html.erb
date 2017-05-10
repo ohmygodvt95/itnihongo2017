@@ -13,12 +13,13 @@
     </div>
 
     <div class="collapse navbar-collapse navbar-ex1-collapse">
-      <form class="navbar-form navbar-left" role="search">
+      <% @q = Image.ransack(params[:q]) %>
+      <%= search_form_for @q, class:"navbar-form navbar-left", role: "search", url: search_index_path do |f| %>
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="サーチ">
+          <%= f.search_field :body_cont, class: "form-control", placeholder: "サーチ" %>
         </div>
-        <button type="submit" class="btn btn-default">提出する</button>
-      </form>
+        <button class="btn btn-default" type="submit">提出する</button>
+      <% end %>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Wevivuについて", "/pages/about" %></li>
         <% if user_signed_in?  %>
