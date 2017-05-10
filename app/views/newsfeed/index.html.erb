@@ -19,7 +19,7 @@
                 <% end %>
                 <div class="media-info">
                   <div class="reaction">
-                    <a class="btn text-green"><i class="fa fa-thumbs-up"></i> 100</a>
+                    <a class="btn <% if current_user.like_image? image  %> text-green <% end %>"><i class="fa fa-thumbs-up"></i> <%= image.likes.count %></a>
                     <span class="pull-right" style="padding-top: 5px"><%= time_ago_in_words(image.created_at) %> ago</span>
                   </div>
                   <div class="user-info">

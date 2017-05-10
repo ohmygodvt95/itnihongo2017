@@ -13,7 +13,7 @@ class ImagesController < ApplicationController
   end
 
   def show
-
+    @comments = @image.comments.page params[:page]
   end
 
   def edit

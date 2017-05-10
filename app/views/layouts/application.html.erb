@@ -6,6 +6,7 @@
     <link href="https://fonts.googleapis.com/css?family=Baloo" rel="stylesheet">
     <link href="<%= asset_path "favicon.png" %>" rel="shortcut icon" type="image/x-icon" />
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
+    <%= javascript_include_tag "application"%>
   </head>
 
   <body>
@@ -17,7 +18,17 @@
     <br>
     <br>
     <%= render "layouts/footer" %>
-    <%= javascript_include_tag "application"%>
     <%= render "layouts/message" %>
+    <script type="text/javascript" charset="utf-8">
+      var preloader = $('#spinner-wrapper');
+      $(window).on('load', function() {
+        var preloaderFadeOutTime = 2000;
+
+        function hidePreloader() {
+          preloader.fadeOut(preloaderFadeOutTime);
+        }
+        hidePreloader();
+      });
+    </script>
   </body>
 </html>
