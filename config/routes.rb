@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   get 'following/index'
 
   devise_for :users
-  resources :images
+  resources :images do
+    resources :likes, only: [:create, :destroy]
+  end
   resources :users, only: [:show] do
     resources :followers, only: [:index]
     resources :following, only: [:index]
