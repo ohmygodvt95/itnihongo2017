@@ -8,6 +8,7 @@ class User < ApplicationRecord
            dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :likes
 
   mount_uploader :avatar, AvatarUploader
   mount_uploader :cover, CoverUploader
@@ -27,7 +28,21 @@ class User < ApplicationRecord
     following.include? other_user
   end
 
-  def newsfeed page = 1
+  def like image
+    likes.create user_id: self.id, image_id: image.id
+  end
+
+  def unlike image
+    image = likes.find_by user_id: self.id, image_id: image.id
+    image.destroy
+  end
+
+  def like_image? image
+    image = likes.find_by user_id: self.id, image_id: image.id
+    image.present?
+  end
+
+  def newsfeed
     following_ids = "SELECT followed_id FROM relationships
                      WHERE  follower_id = :user_id"
     Image.where("user_id IN (#{following_ids})

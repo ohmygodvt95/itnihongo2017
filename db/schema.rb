@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170504102752) do
+ActiveRecord::Schema.define(version: 20170510095621) do
 
   create_table "images", force: :cascade do |t|
     t.integer  "user_id"
     t.text     "body"
     t.string   "file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
