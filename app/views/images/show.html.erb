@@ -26,31 +26,66 @@
           <div class="post-detail">
             <div class="user-info">
               <h5>
-                <%= link_to @image.user.username, @image.user, class: "profile-link" %> <span class="following">following</span></h5>
+                <%= link_to @image.user.username, @image.user, class: "profile-link" %></h5>
               <p class="text-muted"><%= time_ago_in_words(@image.created_at) %> ago 写真を公開しました</p>
             </div>
             <div class="reaction">
-              <a class="btn text-green"><i class="fa fa-thumbs-up"></i> 13</a>
+              <% if current_user.like_image? @image %>
+                <%= link_to image_like_path(@image), class: "btn btn-default text-green", method: :delete do %>
+                  <i class="fa fa-thumbs-up"></i> <%= @image.likes.count %>
+                <% end %>
+              <% else %>
+                <%= link_to image_likes_path(@image), class: "btn btn-default", method: :post do %>
+                  <i class="fa fa-thumbs-up"></i> <%= @image.likes.count %>
+                <% end %>
+              <% end %>
             </div>
             <div class="line-divider"></div>
             <div class="post-text">
               <p><%= @image.body %></p>
             </div>
             <div class="line-divider"></div>
-            <div class="post-comment">
-              <img src="http://thunder-team.com/friend-finder/images/users/user-1.jpg" alt="" class="profile-photo-sm" />
-              <p><a href="timeline.html" class="profile-link">Diana </a><i class="em em-laughing"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
-            </div>
-            <div class="post-comment">
-              <img src="http://thunder-team.com/friend-finder/images/users/user-1.jpg" alt="" class="profile-photo-sm" />
-              <p><a href="timeline.html" class="profile-link">John</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
-            </div>
-            <% if user_signed_in? %>
+            <% @comments.each do |comment| %>
               <div class="post-comment">
-                <img src="<%= current_user.avatar.thumb.url %>" alt="" class="profile-photo-sm" />
-                <input type="text" class="form-control" placeholder="コメントを投稿">
+                <img src="<%= comment.user.avatar.thumb.url %>" alt="" class="profile-photo-sm" />
+
+                <p>
+                  <a href="<%= user_path comment.user %>" class="profile-link"><%= comment.user.username %> </a>
+                  <i class="em em-laughing"></i>
+                  <%= comment.body %>
+                  <br>
+                  <small>
+                    <%= comment.updated_at %>
+                    <% if comment.user_id == current_user.id %> |
+                      <%= link_to image_comment_path(@image, comment), method: :delete do %>
+                        <i class=" fa fa-trash"></i>
+                      <% end %>
+                    <% end %>
+                  </small>
+                </p>
+
               </div>
             <% end %>
+            <hr>
+            <%= paginate @comments,theme: 'twitter-bootstrap-3' %>
+            <% if user_signed_in? %>
+              <%= form_for :comment, url: image_comments_path(@image), id: "comment" do |f| %>
+                <div class="post-comment">
+                  <img src="<%= current_user.avatar.thumb.url %>" alt="" class="profile-photo-sm" />
+                  <%= f.hidden_field :user_id, value: current_user.id %>
+                  <%= f.text_field :body, class: "form-control", placeholder: "コメントを投稿", required: true %>
+                </div>
+              <% end %>
+            <% end %>
+            <script type="text/javascript" charset="utf-8">
+              jQuery(document).ready(function($) {
+                $('#input').keypress(function (event) {
+                  if(event.keyCode === 10 || event.keyCode === 13){
+                    $('form').submit();
+                  }
+                });
+              });
+            </script>
           </div>
         </div>
       </div>

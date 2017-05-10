@@ -53,7 +53,7 @@
                       <p class="text-muted"><%= time_ago_in_words(image.created_at) %> ago 写真を公開しました</p>
                     </div>
                     <div class="reaction">
-                      <a class="btn text-green"><i class="fa fa-thumbs-up"></i> 13</a>
+                      <a class="btn <% if current_user.like_image? image  %> text-green <% end %>"><i class="fa fa-thumbs-up"></i> <%= image.likes.count %></a>
                     </div>
                   </div>
                 </div>

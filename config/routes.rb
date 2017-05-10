@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   get 'following/index'
 
   devise_for :users
-  resources :images
+  resources :images do
+    resources :likes, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
+  end
   resources :users, only: [:show] do
     resources :followers, only: [:index]
     resources :following, only: [:index]
@@ -13,6 +16,8 @@ Rails.application.routes.draw do
 
   resources :relationships, only: [:create, :destroy]
   resources :newsfeed, only: :index
+  resources :search, only: :index
+
   unauthenticated  do
     root "static_pages#show", act: "home"
   end
