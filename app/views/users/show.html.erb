@@ -12,25 +12,8 @@
                 <%= render "home/create"  %>
               <% else %>
                 <hr>
-                <% if current_user.id != @user.id %>
-                  <div id="follow_form">
-                    <% unless current_user.following? @user %>
-                      <%= form_for current_user.active_relationships.build do |f| %>
-                        <div><%= hidden_field_tag :followed_id, @user.id %></div>
-                        <%= f.submit "フォロー", class: "btn btn-primary btn-block" %>
-                      <% end %>
-                    <% else %>
-                      <%= form_for current_user.active_relationships.find_by(followed_id: @user.id),
-                                   html: { method: :delete } do |f| %>
-                        <%= f.submit "アンフォロー", class: "btn btn-danger btn-block" %>
-                      <% end %>
-
-                  <% end %>
-                  </div>
-                <% end %>
-                <hr>
+                <br>
               <% end %>
-
             <% end %>
             <% @images.each do |image|  %>
               <!-- Post Content
